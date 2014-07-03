@@ -69,7 +69,7 @@ Number Bluetooth_NoOfPairedDevices "Paired Devices in range: [%d]" (Bluetooth) {
 Number Bluetooth_NoOfDevices "All Devices in range: [%d]" (Bluetooth) { bluetooth="*" }
 
 /* Fing */
-Number Fing_NumHosts "Fing Num Host on Net [%d]" (Fing) {exec="<[./exec-scripts/exec-fing.sh:60000:REGEX((.*?))]"}
+Number Fing_NumHosts "Fing Num Host on Net [%d]" (Fing) {exec="<[./exec-scripts/exec-fing.sh:6000:REGEX((.*?))]"}
 
 /* Network Health */
 Switch NetworkHealth_iPAD   "iPAD"   (NetworkHealth)   { nh="192.168.1.137" }
