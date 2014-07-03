@@ -1,7 +1,12 @@
 import org.openhab.core.library.types.*
+import org.openhab.core.library.items.*
 import org.openhab.core.persistence.*
 import org.openhab.model.script.actions.*
 import org.openhab.library.tel.types.CallType
+
+
+
+
 
 /* 
 rule Startup
@@ -31,6 +36,7 @@ then
 end
 
 
+
 rule SendMailTest
   when Item Mail_Test received update ON
 then
@@ -52,7 +58,21 @@ rule NeueNetzwerkDinge
 	when Item Fing_NumHosts changed
 then 
 	
+	//var String farb2 = Hue_Color_2.state.toString
+	
+	var states = storeStates(Hue_Color_2)
+
 	var String netzzahl = Fing_NumHosts.state.toString
+	//logInfo("***** Farbe vorhher", farb2)
+	
+	sendCommand(Hue_Color_2, "240,100,100") 
 	logInfo("***** Fing Number", netzzahl)
+	//logInfo("***** Farbe nach blau", farb2.toString)
+	Thread::sleep(2000)
+	
+	//sendCommand(Hue_Color_2, farb2)
+	
+	restoreStates(states)
+	
 	
 end
