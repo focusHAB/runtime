@@ -19,6 +19,17 @@ then
 end
 */
 
+rule Netatmo_Noise_Hue_3
+when
+	Item Netatmo_Winti_Indoor_Noise changed
+then
+/* 	var HSBType col = Hue_Color_StehlampeUnten.state as HSBType*/
+/*	sendCommand(Hue_Color_GangUnten,col)*/
+	var String colorString = Netatmo_Winti_Indoor_Noise.state +",90.0,100"
+	logInfo("**** Rule Netatmo_Noise_Hue_3", colorString)
+	sendCommand(Hue_Color_3, colorString)
+end
+
 
 rule SendMailTest
   when Item Mail_Test received update ON
