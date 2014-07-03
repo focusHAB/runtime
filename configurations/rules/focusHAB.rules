@@ -35,3 +35,13 @@ then
   logInfo("**** Tweet Test", tweetMsg)
   sendTweet(tweetMsg)
 end
+
+
+rule NeueNetzwerkDinge
+	when Item Fing_NumHosts changed
+then 
+	
+	var String netzzahl = Fing_NumHosts.state.toString
+	logInfo("***** Fing Number", netzzahl)
+	
+end
