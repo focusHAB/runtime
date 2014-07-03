@@ -3,21 +3,19 @@ import org.openhab.core.persistence.*
 import org.openhab.model.script.actions.*
 import org.openhab.library.tel.types.CallType
 
-/* 
-rule Startup
-when 
-	System started
-then
-	say("Welcome at openHab!")
-end
-
-rule Goodbye
-when 
-	System shuts down
-then
-	say("Good bye!")
-end
-*/
+//rule Startup
+//when 
+//	System started
+//then
+//	say("Welcome at openHab!")
+//end
+//
+//rule Goodbye
+//when 
+//	System shuts down
+//then
+//	say("Good bye!")
+//end
 
 
 rule SendMailTest
@@ -35,3 +33,40 @@ then
   logInfo("**** Tweet Test", tweetMsg)
   sendTweet(tweetMsg)
 end
+
+ rule VoiceControl
+ when
+    Item VoiceCommand received command
+ then
+ 	val String[] hueCommand = receivedCommand.toString.lowerCase.split
+ 	
+ 	if(hueCommand.get(0).equals("party"))
+ 	{
+ 		
+ 		var int i = 0;
+ 		while(i!=50)
+		{
+        i = i + 1;
+        
+        Hue_Color_1.sendCommand((Math::random*254) + ",100,100")
+        Hue_Color_2.sendCommand((Math::random*254) + ",100,100")
+        Hue_Color_3.sendCommand((Math::random*254) + ",100,100")
+        Thread::sleep(20)
+        }
+ 	}
+
+    val hue = switch(hueCommand.get(2)) {
+        case "blau"    	: 240
+        case "magenta"	: 300
+        case "grün"    	: 120
+        case "gelb"		: 70
+    }
+    switch(hueCommand.get(1))
+    {
+    	case "1" : Hue_Color_1.sendCommand(hue + ",100,100")
+    	case "2" : Hue_Color_2.sendCommand(hue + ",100,100")
+    	case "3" : Hue_Color_3.sendCommand(hue + ",100,100")
+    }
+    
+//    Hue_Color_1.sendCommand(hue + ",100,100")
+ end
