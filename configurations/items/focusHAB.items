@@ -81,4 +81,5 @@ Switch NetworkHealth_iPAD   "iPAD"   (NetworkHealth)   { nh="192.168.1.137" }
 Switch Mail_Test "Mail Test" (TestCases)
 Switch Twitter_Test "Twitter Test" (TestCases)
 
+Number Lamp_Scene			"Scene"					<sofa>
 

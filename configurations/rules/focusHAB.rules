@@ -53,7 +53,6 @@ then
   sendTweet(tweetMsg)
 end
 
-
 rule NeueNetzwerkDinge
 	when Item Fing_NumHosts changed
 then 
@@ -67,6 +66,7 @@ then
 	
 	sendCommand(Hue_Color_2, "240,100,100") 
 	logInfo("***** Fing Number", netzzahl)
+
 	//logInfo("***** Farbe nach blau", farb2.toString)
 	Thread::sleep(2000)
 	
@@ -75,4 +75,27 @@ then
 	restoreStates(states)
 	
 	
+
+end	
+
+rule "Light scene"
+	when
+		Item Lamp_Scene received command
+	then
+		switch(receivedCommand) {
+			case 0 : sendCommand(Hue_OnOff, OFF)
+			case 1 : {
+				sendCommand(Hue_OnOff, ON);
+				sendCommand(Hue_Color_1, "240,100,100");
+				sendCommand(Hue_Color_2, "0,100,100");
+				sendCommand(Hue_Color_3, "240,100,100");
+				}
+			case 2 : {
+				sendCommand(Hue_OnOff, ON);
+				sendCommand(Hue_Color_1, "60,100,10");
+				sendCommand(Hue_Color_2, "60,100,10");
+				sendCommand(Hue_Color_3, "60,100,10");
+				}
+		}
+
 end
