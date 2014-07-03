@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Service-Component: OSGI-INF/bluetoothbinding.xml, OSGI-INF/discoveryse
+ rvice.xml
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,lib/bluecove-2.1.1-SNAPSHOT.jar
+Built-By: thomasee
+Bundle-Name: openHAB Bluetooth Binding
+Created-By: Apache Maven
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: openHAB.org
+Build-Jdk: 1.7.0_51
+Bundle-Version: 1.5.0
+Bundle-Activator: org.openhab.binding.bluetooth.internal.BluetoothActi
+ vator
+Bundle-ManifestVersion: 2
+Import-Package: com.google.common.base,com.google.common.collect,org.o
+ penhab.core.events,org.openhab.core.items,org.openhab.core.library.it
+ ems,org.openhab.core.library.types,org.openhab.core.types,org.openhab
+ .model.item.binding,org.osgi.framework,org.osgi.service.cm,org.slf4j
+Bundle-SymbolicName: org.openhab.binding.bluetooth
+Archiver-Version: Plexus Archiver
+
