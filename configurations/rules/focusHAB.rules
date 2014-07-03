@@ -1,0 +1,37 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+import org.openhab.library.tel.types.CallType
+
+/* 
+rule Startup
+when 
+	System started
+then
+	say("Welcome at openHab!")
+end
+
+rule Goodbye
+when 
+	System shuts down
+then
+	say("Good bye!")
+end
+*/
+
+
+rule SendMailTest
+  when Item Mail_Test received update ON
+then
+  var String mailSubject = "Mail Test" + now
+  logInfo("**** Send Mail Test", mailSubject)
+  sendMail( "david@davidulrich.ch" , mailSubject , "Mail Test");
+end
+
+rule TwitterTest
+  when Item Twitter_Test received update ON
+then
+  var String tweetMsg = "Tweet Test" + now
+  logInfo("**** Tweet Test", tweetMsg)
+  sendTweet(tweetMsg)
+end
