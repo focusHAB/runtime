@@ -4,6 +4,7 @@ sitemap focusHab_luna label="focusHab-luna"
 	Frame label="Test Cases" {
 		Switch item=Mail_Test label="Send Test Mail"
 		Switch item=Twitter_Test label="Send Test Twitter Message"
+		Text item=w
 	}
 	/*
 	Frame label="Bluetooth" {
@@ -16,7 +17,7 @@ sitemap focusHab_luna label="focusHab-luna"
 	}
 	
 	Frame label="Network Health" {
-		Switch item=NetworkHealth_iPAD label="On Network"
+		Switch item=NetworkHealth_OwnersDevice label="Owners Devices is on Network"
 	}
 	
 	Frame label="Netatmo Stations" {
