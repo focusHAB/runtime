@@ -1,7 +1,12 @@
 import org.openhab.core.library.types.*
+import org.openhab.core.library.items.*
 import org.openhab.core.persistence.*
 import org.openhab.model.script.actions.*
 import org.openhab.library.tel.types.CallType
+
+
+
+
 
 /* 
 rule Startup
@@ -31,6 +36,7 @@ then
 end
 
 
+
 rule SendMailTest
   when Item Mail_Test received update ON
 then
@@ -45,4 +51,51 @@ then
   var String tweetMsg = "Tweet Test" + now
   logInfo("**** Tweet Test", tweetMsg)
   sendTweet(tweetMsg)
+end
+
+rule NeueNetzwerkDinge
+	when Item Fing_NumHosts changed
+then 
+	
+	//var String farb2 = Hue_Color_2.state.toString
+	
+	var states = storeStates(Hue_Color_2)
+
+	var String netzzahl = Fing_NumHosts.state.toString
+	//logInfo("***** Farbe vorhher", farb2)
+	
+	sendCommand(Hue_Color_2, "240,100,100") 
+	logInfo("***** Fing Number", netzzahl)
+
+	//logInfo("***** Farbe nach blau", farb2.toString)
+	Thread::sleep(2000)
+	
+	//sendCommand(Hue_Color_2, farb2)
+	
+	restoreStates(states)
+	
+	
+
+end	
+
+rule "Light scene"
+	when
+		Item Lamp_Scene received command
+	then
+		switch(receivedCommand) {
+			case 0 : sendCommand(Hue_OnOff, OFF)
+			case 1 : {
+				sendCommand(Hue_OnOff, ON);
+				sendCommand(Hue_Color_1, "240,100,100");
+				sendCommand(Hue_Color_2, "0,100,100");
+				sendCommand(Hue_Color_3, "240,100,100");
+				}
+			case 2 : {
+				sendCommand(Hue_OnOff, ON);
+				sendCommand(Hue_Color_1, "60,100,10");
+				sendCommand(Hue_Color_2, "60,100,10");
+				sendCommand(Hue_Color_3, "60,100,10");
+				}
+		}
+
 end
