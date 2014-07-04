@@ -5,9 +5,6 @@ import org.openhab.model.script.actions.*
 import org.openhab.library.tel.types.CallType
 
 
-
-
-
 /* 
 rule Startup
 when 
@@ -97,5 +94,17 @@ rule "Light scene"
 				sendCommand(Hue_Color_3, "60,100,10");
 				}
 		}
+end
 
+rule "Adjust living room lighting when XBMC starts/stops"
+when
+    Item XbmcLiving_State changed
+then
+    var String state = XbmcLiving_State.state.toString()
+    
+    switch (state.lowerCase) {
+		case "play"  : Hue_OnOff.send(OFF)
+		case "pause" : Hue_OnOff.send(ON)
+		case "stop"  : Hue_OnOff.send(ON)
+ 	}
 end

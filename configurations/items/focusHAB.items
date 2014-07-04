@@ -83,3 +83,9 @@ Switch Twitter_Test "Twitter Test" (TestCases)
 
 Number Lamp_Scene			"Scene"					<sofa>
 
+String XbmcLiving_State "Living State [%s]" { xbmc="<[#livingRoom|Player.State]" }
+String XbmcLiving_Title "Living Title [%s]" { xbmc="<[#livingRoom|Player.Title]" }
+String XbmcLiving_ShowTitle "Living Show [%s]" { xbmc="<[#livingRoom|Player.ShowTitle]" }
+Switch XbmcLiving_PlayPause "Living Play/Pause" { xbmc=">[#livingRoom|Player.PlayPause]", autoupdate="false" }
+Switch XbmcLiving_Stop "Living Stop" { xbmc=">[#livingRoom|Player.Stop]", autoupdate="false" }
+String XbmcLiving_Notify "Living Notify [%s]" { xbmc="<[#livingRoom|GUI.ShowNotification]", autoupdate="false" }
