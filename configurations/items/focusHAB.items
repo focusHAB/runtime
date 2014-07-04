@@ -44,6 +44,7 @@ Switch Hue_OnOff_1   "Hue 1"   (Hue_OnOff) {hue="1"}
 Switch Hue_OnOff_2   "Hue 2"   (Hue_OnOff) {hue="2"} 
 Switch Hue_OnOff_3   "Hue 3"   (Hue_OnOff) {hue="3"}
 
+
 Color Hue_Color_1 "Color Hue 1"   (HueColor) {hue="1"}
 Color Hue_Color_2 "Color Hue 2"   (HueColor) {hue="2"}
 Color Hue_Color_3 "Color Hue 3"   (HueColor) {hue="3"}
@@ -51,6 +52,8 @@ Dimmer Hue_Dimmer_Brightness_1 "Brightness Hue 1"   (Hue_Color) {hue="1;brightne
 Dimmer Hue_Dimmer_ColTemp_1 "ColTemp Hue 1"   (Hue_Color) {hue="1;colorTemperature;100"}
 
 String VoiceCommand
+
+String w   "Today [%s]" <w>  { http="<[http://api.wunderground.com/api/283fe7b137b14c14/forecast/q/Luxembourg/Luxembourg.xml:3600000:XSLT(wunderground_icon_forecast.xsl)]"} 
 
 /*Gang unten --> 4 */
 /* 

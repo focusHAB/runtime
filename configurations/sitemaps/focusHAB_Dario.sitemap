@@ -4,6 +4,7 @@ sitemap focusHab_Dario label="focusHab-Dario"
 	Frame label="Test Cases" {
 		Switch item=Mail_Test label="Send Test Mail"
 		Switch item=Twitter_Test label="Send Test Twitter Message"
+		 Text item=w
 	}
 	/* 
 	Frame label="Bluetooth" {
