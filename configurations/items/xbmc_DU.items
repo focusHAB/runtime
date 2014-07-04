@@ -15,6 +15,8 @@ Switch XMBC_Player_Stop 		"Player Stop" (XMBC) {xbmc=">[#livingRoom|Player.PlayP
 
 String DeviceOwner "Device Owner"
 
+//String XMBC_Music_Item "Music Item [%s]" { http='<[http://localhost:8081/jsonrpc?{"jsonrpc":"2.0","method":"Player.GetItem","params": {"playerid":1},"id":1}:30000:JS(getValuesForItem.js)]' }
+
 /* HUE Lights */
 Switch Hue_OnOff_1   "Hue 1"   (Hue_OnOff) {hue="1"}
 Switch Hue_OnOff_2   "Hue 2"   (Hue_OnOff) {hue="2"}

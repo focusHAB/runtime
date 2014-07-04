@@ -16,8 +16,14 @@ when
 then
 	say("Now playing item" + XMBC_Player_Title)
 	
+	
 end
 
+rule MUSIC_Item_Changed
+when Item XMBC_Music_Item changed
+then 
+	logInfo("Music Item", "" + XMBC_Music_Item.state)
+end
 
 rule OwnersDeviceOnNetwork
 when 
@@ -44,6 +50,12 @@ then
 	}
 	
 end
+
+/*
+ * Player.Open 
+ * jsonrpc?{"jsonrpc":"2.0","method":"Player.Open","id":1} 
+ * 
+ */
 
 rule OwnersDeviceOffNetwork
 when
