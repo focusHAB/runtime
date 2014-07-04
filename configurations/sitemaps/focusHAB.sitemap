@@ -1,4 +1,4 @@
-sitemap focusHab_luna label="focusHab-luna"
+sitemap focusHab_fertig label="focusHab Fertig"
 {
 	
 	Frame label="Test Cases" {
@@ -6,12 +6,6 @@ sitemap focusHab_luna label="focusHab-luna"
 		Switch item=Twitter_Test label="Send Test Twitter Message"
 		Text item=w
 	}
-	/*
-	Frame label="Bluetooth" {
-		Text item=Bluetooth_NoOfDevices
-		Text item=Bluetooth_NoOfPairedDevices
-		Text item=Bluetooth_NoOfUnpairedDevices
-	} */
 	Frame label="Exec" {
 		Text item=Fing_NumHosts
 	}
@@ -49,7 +43,7 @@ sitemap focusHab_luna label="focusHab-luna"
 	}
 	
 	Frame label="XBMC" {
-		Text label="Wohnzimmer" {
+		Text label="Wohnzimmer" icon="xbmc" {
 			 Text item=XbmcLiving_State label="State [%s]"
 			 Text item=XbmcLiving_Title label="Title [%s]" visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
 			 Text item=XbmcLiving_ShowTitle label="Show [%s]" visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]

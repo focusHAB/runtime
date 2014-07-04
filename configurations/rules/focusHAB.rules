@@ -154,52 +154,52 @@ then
 	say("Now playing item" + XMBC_Player_Title)
 end
 
-rule OwnersDeviceOnNetwork
-when 
-	Item NetworkHealth_OwnersDevice received update ON
-then
-	if (XMBC_Player_State.state != "Play") {
-		var String msg = DeviceOwner.state + " hat den Raum betreten..."
-		logInfo("Rule OwnersDeviceOnNetwork", msg)
-		
-		//Lampen an
-		sendCommand(HueLights, ON)
-		
-		Thread::sleep(2000)
-		
-		say("Hello Again, What about music?")
-		
-		Thread::sleep(1000)
-		
-		sendXbmcNotification("localhost",8081, "XBMC Aktivierung!", msg)
-		sendCommand(XMBC_Player_PlayPause, ON)
-	//	sendCommand(Hue_Color_3, "0,100,100")
-	} else {
-		logInfo("Rule OwnersDeviceOnNetwork", "state war play *************" + XMBC_Player_State.state)
-	}
-	
-end
+//rule OwnersDeviceOnNetwork
+//when 
+//	Item NetworkHealth_OwnersDevice received update ON
+//then
+//	if (XbmcLiving_State.state != "Play") {
+//		var String msg = DeviceOwner.state + " hat den Raum betreten..."
+//		logInfo("Rule OwnersDeviceOnNetwork", msg)
+//		
+//		//Lampen an
+//		sendCommand(HueLights, ON)
+//		
+//		Thread::sleep(2000)
+//		
+//		say("Hello Again, What about music?")
+//		
+//		Thread::sleep(1000)
+//		
+//		sendXbmcNotification("localhost",8081, "XBMC Aktivierung!", msg)
+//		sendCommand(XbmcLiving_PlayPause, ON)
+//	} else {
+//		logInfo("Rule OwnersDeviceOnNetwork", "state war play *************" + XMBC_Player_State.state)
+//	}
+//	
+//end
 
 /*
  * Player.Open 
  * jsonrpc?{"jsonrpc":"2.0","method":"Player.Open","id":1} 
  * 
  */
-
+/*
 rule OwnersDeviceOffNetwork
 when
 	Item NetworkHealth_OwnersDevice received update OFF
 then
-	if (XMBC_Player_State.state == "Play") {
+	if (XbmcLiving_State.state == "Play") {
 		var String msg = DeviceOwner.state + " hat den Raum verlassen..."
 		logInfo("Rule OwnersDeviceOffNetwork", msg)
 		sendXbmcNotification("localhost",8081, "XBMC Deaktivierung!", msg)
-		sendCommand(XMBC_Player_Stop, ON)
+		sendCommand(XbmcLiving_Stop, ON)
 		
 		//Lampen an
 		sendCommand(HueLights, OFF)
 
 	} else {
-		logInfo("Rule OwnersDeviceOffNetwork", "state war nicht play *************" + XMBC_Player_State.state)
+		logInfo("Rule OwnersDeviceOffNetwork", "state war nicht play *************" +XbmcLiving_State.state)
 	}
 end
+*  */
