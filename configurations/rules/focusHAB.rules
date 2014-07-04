@@ -1,4 +1,5 @@
 import org.openhab.core.library.types.*
+import org.openhab.core.library.items.*
 import org.openhab.core.persistence.*
 import org.openhab.model.script.actions.*
 import org.openhab.library.tel.types.CallType
@@ -17,6 +18,34 @@ import org.openhab.library.tel.types.CallType
 //	say("Good bye!")
 //end
 
+/* 
+rule Startup
+when 
+	System started
+then
+	say("Welcome at openHab!")
+end
+
+rule Goodbye
+when 
+	System shuts down
+then
+	say("Good bye!")
+end
+*/
+
+rule Netatmo_Noise_Hue_3
+when
+	Item Netatmo_Winti_Indoor_Noise changed
+then
+/* 	var HSBType col = Hue_Color_StehlampeUnten.state as HSBType*/
+/*	sendCommand(Hue_Color_GangUnten,col)*/
+	var String colorString = Netatmo_Winti_Indoor_Noise.state +",90.0,100"
+	logInfo("**** Rule Netatmo_Noise_Hue_3", colorString)
+	sendCommand(Hue_Color_3, colorString)
+end
+
+
 
 rule SendMailTest
   when Item Mail_Test received update ON
@@ -33,7 +62,6 @@ then
   var String tweetMsg = "Tweet Test" + now
   logInfo("**** Tweet Test", tweetMsg)
   sendTweet(tweetMsg)
-  callScript("party")
 end
 
  rule VoiceControl
@@ -86,3 +114,62 @@ end
  	
 
  end
+
+rule NeueNetzwerkDinge
+	when Item Fing_NumHosts changed
+then 
+	
+	//var String farb2 = Hue_Color_2.state.toString
+	
+	var states = storeStates(Hue_Color_2)
+
+	var String netzzahl = Fing_NumHosts.state.toString
+	//logInfo("***** Farbe vorhher", farb2)
+	
+	sendCommand(Hue_Color_2, "240,100,100") 
+	logInfo("***** Fing Number", netzzahl)
+
+	//logInfo("***** Farbe nach blau", farb2.toString)
+	Thread::sleep(2000)
+	
+	//sendCommand(Hue_Color_2, farb2)
+	
+	restoreStates(states)
+	
+	
+
+end	
+
+rule "Light scene"
+	when
+		Item Lamp_Scene received command
+	then
+		switch(receivedCommand) {
+			case 0 : sendCommand(Hue_OnOff, OFF)
+			case 1 : {
+				sendCommand(Hue_OnOff, ON);
+				sendCommand(Hue_Color_1, "240,100,100");
+				sendCommand(Hue_Color_2, "0,100,100");
+				sendCommand(Hue_Color_3, "240,100,100");
+				}
+			case 2 : {
+				sendCommand(Hue_OnOff, ON);
+				sendCommand(Hue_Color_1, "60,100,10");
+				sendCommand(Hue_Color_2, "60,100,10");
+				sendCommand(Hue_Color_3, "60,100,10");
+				}
+		}
+end
+
+rule "Adjust living room lighting when XBMC starts/stops"
+when
+    Item XbmcLiving_State changed
+then
+    var String state = XbmcLiving_State.state.toString()
+    
+    switch (state.lowerCase) {
+		case "play"  : Hue_OnOff.send(OFF)
+		case "pause" : Hue_OnOff.send(ON)
+		case "stop"  : Hue_OnOff.send(ON)
+ 	}
+end

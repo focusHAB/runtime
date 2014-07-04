@@ -1,17 +1,16 @@
-sitemap focusHab_Dario label="focusHab-Dario"
+sitemap focusHab_luna label="focusHab-luna"
 {
 	
 	Frame label="Test Cases" {
 		Switch item=Mail_Test label="Send Test Mail"
 		Switch item=Twitter_Test label="Send Test Twitter Message"
 	}
-	/* 
+	/*
 	Frame label="Bluetooth" {
 		Text item=Bluetooth_NoOfDevices
 		Text item=Bluetooth_NoOfPairedDevices
 		Text item=Bluetooth_NoOfUnpairedDevices
-	}*/
-	
+	} */
 	Frame label="Exec" {
 		Text item=Fing_NumHosts
 	}
@@ -38,14 +37,25 @@ sitemap focusHab_Dario label="focusHab-Dario"
  	
 	Frame label="Hue Lights" {
 		Switch item=Hue_OnOff label="Alle Lampen"
-		
 		Switch item=Hue_OnOff_1 
 		Switch item=Hue_OnOff_2 
 		Switch item=Hue_OnOff_3 
 		
-		Colorpicker item=Hue_Color_1 icon="slider"
+		Colorpicker item=Hue_Color_2 icon="slider"
 		Slider item=Hue_Dimmer_Brightness_1 label="Dimm Brightness Hue 1"
 		Slider item=Hue_Dimmer_ColTemp_1 label="Dimm Col Temp Hue 1"
+		Selection item=Lamp_Scene label="Szenen Auswahl" mappings=[0=off, 1=AXA, 2=Television]
+	}
+	
+	Frame label="XBMC" {
+		Text label="Wohnzimmer" {
+			 Text item=XbmcLiving_State label="State [%s]"
+			 Text item=XbmcLiving_Title label="Title [%s]" visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
+			 Text item=XbmcLiving_ShowTitle label="Show [%s]" visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
+			 Switch item=XbmcLiving_PlayPause label="Play" icon="play" mappings=[ON="Play"] visibility=[XbmcLiving_State==Pause]
+			 Switch item=XbmcLiving_PlayPause label="Pause" icon="pause" mappings=[ON="Pause"] visibility=[XbmcLiving_State==Play]
+			 Switch item=XbmcLiving_Stop label="Stop" mappings=[ON="Stop"] visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
+		}
 	}
 
 

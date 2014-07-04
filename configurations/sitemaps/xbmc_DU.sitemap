@@ -1,0 +1,23 @@
+sitemap xbmc_DU label="XBMC von David"
+{
+	
+
+	Frame label="XMBC" {
+		Text item=XMBC_Player_State
+		Text item=XMBC_Player_Title
+		//Text item=XMBC_Music_Item
+		Switch item=XMBC_Player_PlayPause label="Play" icon="play" mappings=[ON="Play"] visibility=[XMBC_Player_State==Pause]
+ 		Switch item=XMBC_Player_PlayPause label="Pause" icon="pause" mappings=[ON="Pause"] visibility=[XMBC_Player_State==Play]
+ 		Switch item=XMBC_Player_Stop label="Stop" mappings=[ON="Stop"] visibility=[XMBC_Player_State==Play, XMBC_Player_State==Pause]
+	}
+	
+	
+	Frame label="Exec" {
+		Text item=Fing_NumHosts
+	}
+	
+	Frame label="Network Health" {
+		Switch item=NetworkHealth_OwnersDevice label="Owners Devices is on Network"
+	}
+
+}
